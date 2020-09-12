@@ -1,0 +1,11 @@
+[Unit]
+Description=Forward connection to rsync over Qubes RPC
+ConditionPathExists=/var/run/qubes-service/rsync-setup
+
+[Socket]
+ListenStream=127.0.0.1:837
+BindToDevice=lo
+Accept=true
+
+[Install]
+WantedBy=multi-user.target

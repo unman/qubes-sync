@@ -1,0 +1,7 @@
+[Unit]
+Description=Forward connection to rsync over Qubes RPC
+
+[Service]
+ExecStart=/usr/bin/qrexec-client-vm '' qubes.Rsync
+StandardInput=socket
+StandardOutput=inherit
