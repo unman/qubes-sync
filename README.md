@@ -17,22 +17,22 @@ Of course, access is controlled with the usual qubes-rpc policy file.
 
 I really should package this properly.
 
-In the meantime:
-Install rsync in the template.
+In the meantime:  
+Install rsync in the template.  
 Copy `rsyncd.conf` to `/etc`  
-Copy `qubes.Rsync` to /etc/qubes-rpc`  
-Copy `qubes-rsync-forwarder@.service` to `/lib/systemd/system`
+Copy `qubes.Rsync` to `/etc/qubes-rpc`  
+Copy `qubes-rsync-forwarder@.service` to `/lib/systemd/system`  
 Copy `qubes-rsync-forwarder.socket` to `/lib/systemd/system`
 
 ###
-On the server:
+On the server:  
 Create `/home/user/shared` and `/home/user/archive`, and populate with data.  
 chmod as appropriate.  
 `systemctl start rsync`
 
 ###
-On the clients:
-Enable the `rsync-setup` service in the client. (This doesnt exst as yet, but should check that rsync is installed and forwarder is enabled).  
+On the clients:  
+Enable the `rsync-setup` service in the client. (This doesnt exist as yet, but should check that rsync is installed and forwarder is enabled).  
 `systemctl enable qubes-rsync-forwarder.socket`  
 `systemctl start qubes-rsync-forwarder.socket`  
 `
