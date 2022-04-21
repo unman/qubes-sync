@@ -44,12 +44,22 @@ Start the forwarder:
 Then on the clients use rsync as normal:  
 `rsync --port=837 localhost::shared`  
 
-## Making it start automatically.  
+### Making it start automatically.  
 I prefer to start the server manually.  
 If you want the rsync service to start automatically, put an entry in `/rw/config/rc.local`:
 `systemctl start rsync`
 
 Similarly, if you want the clients set up automatically, add the start commands to `/rw/config/rc.local` in a client qube.
+
+### Configuring policy
+In Qubes 4.1, add these lines to /etc/qubes/policy.d/30-user.policy. (Create that file if it does not exist.)  
+`qubes.Rsync     *   CLIENT    @default    allow target=SERVER`  
+Change CLIENT to the name of your client qubes, and SERVER to the name of your rsync server.  
+*The clients do not know the name of the server qube*
+
+### Customising
+You can create more shared folders, and make them accessible by customising the /etc/rsyncd.conf file.  
+If you have more than one rsync server qube, you can use [bind-dirs](https://www.qubes-os.org/doc/bind-dirs/) to change the available folders on each server qube.
 
 # Qubes sshfs
 
